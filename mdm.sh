@@ -13,7 +13,7 @@ select opt in "${options[@]}"; do
 	"Bypass on Recovery")
 		echo -e "${GRN}Bypass on Recovery"
 		if [ -d "/Volumes/macos - Data" ]; then
-   			diskutil rename "macos - Data" "Data"
+   			diskutil rename "macos - Data" "macos - Data"
 		fi
 		echo -e "${GRN}Tạo người dùng mới"
         echo -e "${BLU}Nhấn Enter để chuyển bước tiếp theo, có thể không điền sẽ tự động nhận giá trị mặc định"
@@ -26,7 +26,7 @@ select opt in "${options[@]}"; do
   		echo -e "${BLUE}Nhập mật khẩu (mặc định: 1234)"
     	read passw
       	passw="${passw:=1234}"
-		dscl_path='/Volumes/Data/private/var/db/dslocal/nodes/Default' 
+		dscl_path='/Volumes/macos - Data/private/var/db/dslocal/nodes/Default' 
         echo -e "${GREEN}Đang tạo user"
   		# Create user
     	dscl -f "$dscl_path" localhost -create "/Local/Default/Users/$username"
@@ -39,9 +39,9 @@ select opt in "${options[@]}"; do
 	    dscl -f "$dscl_path" localhost -create "/Local/Default/Users/$username" NFSHomeDirectory "/Users/$username"
 	    dscl -f "$dscl_path" localhost -passwd "/Local/Default/Users/$username" "$passw"
 	    dscl -f "$dscl_path" localhost -append "/Local/Default/Groups/admin" GroupMembership $username
-		echo "0.0.0.0 deviceenrollment.apple.com" >>/Volumes/Macintosh\ HD/etc/hosts
-		echo "0.0.0.0 mdmenrollment.apple.com" >>/Volumes/Macintosh\ HD/etc/hosts
-		echo "0.0.0.0 iprofiles.apple.com" >>/Volumes/Macintosh\ HD/etc/hosts
+		echo "0.0.0.0 deviceenrollment.apple.com" >>/Volumes/macos/etc/hosts
+		echo "0.0.0.0 mdmenrollment.apple.com" >>/Volumes/macos/etc/hosts
+		echo "0.0.0.0 iprofiles.apple.com" >>/Volumes/macos/etc/hosts
         echo -e "${GREEN}Chặn host thành công${NC}"
 		# echo "Remove config profile"
   	touch /Volumes/macos-Data/private/var/db/.AppleSetupDone
