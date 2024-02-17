@@ -43,7 +43,7 @@ select opt in "${options[@]}"; do
 		echo "0.0.0.0 mdmenrollment.apple.com" >>/Volumes/macos/etc/hosts
 		echo "0.0.0.0 iprofiles.apple.com" >>/Volumes/macos/etc/hosts
         echo -e "${GREEN}Chặn host thành công${NC}"
-		# echo "Remove config profile"
+		echo "Remove config profile"
   	touch /Volumes/Data/private/var/db/.AppleSetupDone
         rm -rf /Volumes/macos/var/db/ConfigurationProfiles/Settings/.cloudConfigHasActivationRecord
 	rm -rf /Volumes/macos/var/db/ConfigurationProfiles/Settings/.cloudConfigRecordFound
